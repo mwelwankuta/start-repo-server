@@ -8,7 +8,7 @@ const { CLIENT_SECRET, CLIENT_ID } = process.env;
 export const server = http.createServer(async (req, res) => {
     const { url } = req;
     const code = url.split('=')[1];
-    let accessToken;
+    let accessToken = '';
 
     const tokenUrl = `https://github.com/login/oauth/access_token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${code}&redirect_uri=http://localhost:09644/login`;
     const token = await getAccessToken(tokenUrl);
