@@ -32,7 +32,7 @@ async function sendTokenToClient(token) {
     await fetch(`http://localhost:09644?token=${token}`)
 }
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 7439;
 server.listen(`${PORT}`, () => {
     console.log('authenticating...')
 })
