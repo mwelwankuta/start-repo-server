@@ -1,7 +1,7 @@
 import http from 'http';
-import dotenv from 'dotenv';
 import fetch from 'node-fetch';
-dotenv.config({ path: '../.env' });
+import dotenv from 'dotenv';
+dotenv.config();
 
 const { CLIENT_SECRET, CLIENT_ID } = process.env;
 
@@ -11,13 +11,15 @@ export const server = http.createServer(async (req, res) => {
     let accessToken = '';
 
     const tokenUrl = `https://github.com/login/oauth/access_token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${code}&redirect_uri=http://localhost:09644/login`;
+
     const token = await getAccessToken(tokenUrl);
 
-    if (token.includes('access_token')) {
+    if (token.includes('access_token') && code) {
         accessToken = token.split('=')[1]
     }
 
     if (accessToken.length > 0) {
+        console.log('sending')
         await sendTokenToClient(accessToken);
     }
 
@@ -37,5 +39,5 @@ async function sendTokenToClient(token) {
 
 const PORT = process.env.PORT || 7439;
 server.listen(`${PORT}`, () => {
-    console.log('authenticating...')
+    console.log('running server on port: ' + PORT)
 })
