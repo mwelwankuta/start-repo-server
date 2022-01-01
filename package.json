@@ -1,0 +1,20 @@
+{
+  "name": "start-repo-server",
+  "version": "1.0.0",
+  "description": "github auth server for start-repo",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "start-repo",
+    "github",
+    "repo",
+    "project"
+  ],
+  "author": "Mwelwa Nkuta",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
